@@ -1,3 +1,3 @@
 ﻿  main.cpp
-C:\Users\jales\Documents\Codes\C++\projects\guessingGame\guessingGame\src\main.cpp(45,27): warning C4018: '<': signed/unsigned mismatch
+C:\Users\jales\Documents\Codes\C++\projects\guessingGame\guessingGame\src\main.cpp(54,27): warning C4018: '<': signed/unsigned mismatch
   guessingGame.vcxproj -> C:\Users\jales\Documents\Codes\C++\projects\guessingGame\Debug\guessingGame.exe

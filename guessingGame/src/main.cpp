@@ -10,14 +10,23 @@ int main()
          << "* Welcome to guessing game!           *" << endl
          << "***************************************" << endl;
 
-    int secretNumber = 42;
-    int guess = 0;
-    vector<int> guessCollection;
+    const int secretNumber = 42;
+    float guess = 0.0;
+    vector<float> guessCollection;
 
     cout << "Try to guess the secret number, let's get it start!" << endl;
 
     cout << "What is your guess, choose a number: ";
     cin >> guess;
+
+    while (cin.fail())
+    {
+        cout << "ERROR: This is not a valid option." << endl;
+        cin.clear();
+        cin.ignore(256, '\n');
+        cout << "What is your guess, choose a number: ";
+        cin >> guess;
+    }
 
     do
     {
@@ -37,7 +46,7 @@ int main()
         }
         else
         {
-
+            cout << "ERROR: This is not a valid option." << endl;
         }
 
         cout << "\nWrong guesses: ";
