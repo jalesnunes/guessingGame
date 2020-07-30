@@ -4,8 +4,14 @@
 
 using namespace std;
 
+/*****************************************************************
+* Function: verifyGuess()
+* This function will verify if guess is a number, if the user
+* enter a char the program will not accept
+*****************************************************************/
 void verifyGuess(float& guess)
 {
+    //Loop until user enters a number
     while (cin.fail())
     {
         cout << "ERROR: This is not a valid option." << endl;
@@ -16,6 +22,30 @@ void verifyGuess(float& guess)
     }
 }
 
+/*****************************************************************
+* Function: verifyRange()
+* This function will verify if guess is in range beetween 1 to 100
+* if the user enters a number smaller and bigger than those the 
+* program will not accept
+*****************************************************************/
+void verifyRange(float& guess)
+{
+    bool wrongNumber = guess >= 1 && guess <= 100;
+
+    //loop until user enters a valid number between the range
+    while (!wrongNumber)
+    {
+        cout << "Number out of range, choose a number  between 1 to 100:  ";
+        cin >> guess;
+        verifyGuess(guess);
+        wrongNumber = guess >= 1 && guess <= 100;
+    }
+}
+
+/*****************************************************************
+* Function: getGuess()
+* This function is just to get the user guess and verify it
+*****************************************************************/
 float getGuess(float& guess)
 {
     cout << "What is your guess, choose a number: ";
@@ -23,31 +53,45 @@ float getGuess(float& guess)
 
     verifyGuess(guess);
 
+    verifyRange(guess);
+
     return guess;
 }
 
+/*****************************************************************
+* Function: main()
+* the main function to drive the program
+*****************************************************************/
 int main()
 {
 
     cout << "***************************************" << endl
          << "* Welcome to guessing game!           *" << endl
-         << "***************************************" << endl;
+         << "***************************************\n" << endl;
 
-    int secretNumber = 0;
+    int secretNumber = 42;
     float guess = 0.0;
     vector<float> guessCollection;
     int count = 1;
-    float score = 0;
+    float score = 1000.0;
 
     srand(time(NULL)); //initialize random seed 
     secretNumber = rand() % 100;
 
-    cout << "Try to guess the secret number, let's get it start!" << endl;
+    cout << "#######################################" << endl
+         << "# Try to guess the secret number      #" << endl
+         << "# The Number is between 1 to 100      #" << endl
+         << "# Your starting score is 1000         #" << endl
+         << "# Let's get it start!                 #" << endl
+         << "#######################################\n" << endl;
+          
 
-    getGuess(guess);
+   getGuess(guess);
 
-    do
+   while (guess != secretNumber)
     {
+        float lostPoints = abs(guess - secretNumber) / 2.0; // abs always will return an absolute number
+        score -= lostPoints;
 
         if (guess < secretNumber)
         {
@@ -74,8 +118,7 @@ int main()
 
         getGuess(guess);
         count++;
-
-    } while (guess != secretNumber);
+    }
 
     cout << "Congratulations you got it in "
         << count
