@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <time.h> 
+#include <string>
 
 using namespace std;
 
@@ -59,6 +60,27 @@ float getGuess(float& guess)
 }
 
 /*****************************************************************
+* Function: setLevel()
+* This function will set the game difficulty
+*****************************************************************/
+void setLevel(string& levelChoice, int& tryChances)
+{
+    if (levelChoice == "E")
+    {
+        tryChances = 15;
+    }
+    else if (levelChoice == "M")
+    {
+        tryChances = 10;
+    }
+    else if (levelChoice == "H")
+    {
+        tryChances = 5;
+    }
+
+}
+
+/*****************************************************************
 * Function: main()
 * the main function to drive the program
 *****************************************************************/
@@ -72,8 +94,10 @@ int main()
     int secretNumber = 42;
     float guess = 0.0;
     vector<float> guessCollection;
-    int count = 1;
+    int attempts = 0;
     float score = 1000.0;
+    string levelChoice;
+    int tryChances;
 
     srand(time(NULL)); //initialize random seed 
     secretNumber = rand() % 100;
@@ -84,18 +108,33 @@ int main()
          << "# Your starting score is 1000         #" << endl
          << "# Let's get it start!                 #" << endl
          << "#######################################\n" << endl;
-          
 
-   getGuess(guess);
+    cout << "Game levels:" << endl
+         << "\tType E for Easy" << endl
+         << "\tType M for Medium" << endl
+         << "\tType H for Hard" << endl;
+    cout << "Choose the game level: ";
+   cin >> levelChoice;
 
-   while (guess != secretNumber)
+   if (levelChoice != "E" && levelChoice != "M" && levelChoice != "H")
+   {
+       cout << "ERROR: This is not a valid option." << endl;
+   }
+
+   setLevel(levelChoice, tryChances);
+
+   for(attempts; attempts < tryChances; attempts++)
     {
+       cout << "\nAttempt: " << attempts + 1 << endl;
+
+       getGuess(guess);
+
         float lostPoints = abs(guess - secretNumber) / 2.0; // abs always will return an absolute number
         score -= lostPoints;
 
         if (guess < secretNumber)
         {
-            cout << "Try again, Your guess is less than the secret number"
+            cout << "Try again, Your guess is smaller than the secret number"
                 << endl;
             guessCollection.push_back(guess);
 
@@ -106,6 +145,10 @@ int main()
                 << endl;
             guessCollection.push_back(guess);
         }
+        else
+        {
+            break; //if the user hits the secret number we break the loop
+        }
 
         cout << "\nWrong guesses: ";
 
@@ -115,18 +158,26 @@ int main()
         }
 
         cout << endl;
-
-        getGuess(guess);
-        count++;
     }
 
-    cout << "Congratulations you got it in "
-        << count
-        << " tries!"
-        << endl
-        << "This is your score: "
-        << score
-        << endl;
+
+   if (guess != secretNumber)
+   {
+       cout << "Sorry you just lost the game." << endl
+            << "Please try again!" << endl;
+   }
+   else
+   {
+       cout.precision(2);
+       cout << fixed;
+       cout << "\nCongratulations you got it in "
+           << attempts
+           << " attempts!"
+           << endl
+           << "This is your score: "
+           << score
+           << endl;
+   }
 
 
     return 0;

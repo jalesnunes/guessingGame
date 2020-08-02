@@ -1,5 +1,5 @@
 ﻿  main.cpp
-C:\Users\jales\Documents\Codes\C++\projects\guessingGame\guessingGame\src\main.cpp(59,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-C:\Users\jales\Documents\Codes\C++\projects\guessingGame\guessingGame\src\main.cpp(74,26): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\jales\Documents\Codes\C++\projects\guessingGame\guessingGame\src\main.cpp(93,27): warning C4018: '<': signed/unsigned mismatch
+C:\Users\jales\Documents\Codes\C++\projects\guessingGame\guessingGame\src\main.cpp(102,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\jales\Documents\Codes\C++\projects\guessingGame\guessingGame\src\main.cpp(132,26): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\jales\Documents\Codes\C++\projects\guessingGame\guessingGame\src\main.cpp(155,27): warning C4018: '<': signed/unsigned mismatch
   guessingGame.vcxproj -> C:\Users\jales\Documents\Codes\C++\projects\guessingGame\Debug\guessingGame.exe
